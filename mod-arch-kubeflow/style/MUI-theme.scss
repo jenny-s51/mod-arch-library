@@ -139,6 +139,10 @@
   --pf-t--global--border--color--status--warning--default: var(--mui-palette-warning-main);
   --pf-t--global--border--color--status--success--default: var(--mui-palette-success-main);
   --pf-t--global--border--color--status--info--default: var(--mui-palette-info-main);
+  
+  // Status Text Colors (for text on status backgrounds - used by Banner, Alert, etc.)
+  // MUI's warning background is darker (orange #ed6c02) than PatternFly's yellow, so it needs white text
+  --pf-t--global--text--color--status--on-warning--default: var(--mui-palette-warning-contrastText);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // MUI CUSTOM VARIABLES
@@ -1467,8 +1471,6 @@ left: 0;
 .mui-theme .form-label-field-group .pf-v6-c-table tr:where(.pf-v6-c-table__tr) > :where(th, td) {
   /* Layout property - no PF variable exists */
   vertical-align: middle;
-  /* Balance padding - use PF component variable for consistency */
-  --pf-v6-c-table--cell--PaddingBlockStart: 0px;
 }
 
 /* Remove spacing to align form elements at top of table cells */
@@ -2012,4 +2014,15 @@ left: 0;
   .workspace-connect-wrapper {
     padding-top: var(--pf-t--global--spacer--lg);
   }
+}
+
+// Banner component styling - ensure icon and link colors match text color
+// Text color is inherited from --pf-t--global--text--color--status--on-warning--default
+.mui-theme .pf-v6-c-banner.pf-m-warning {
+  // Icon color should match text color for consistency
+  --pf-v6-c-banner__icon--Color: var(--pf-v6-c-banner--m-warning--Color);
+  
+  // Ensure links also use the correct color
+  --pf-v6-c-banner--link--Color: var(--pf-v6-c-banner--m-warning--Color);
+  --pf-v6-c-banner--link--hover--Color: var(--pf-v6-c-banner--m-warning--Color);
 }
