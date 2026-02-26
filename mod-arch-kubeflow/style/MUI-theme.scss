@@ -743,17 +743,17 @@
 }
 
 // Input group control buttons: use PF structure only (Button variant="control" in InputGroup).
-// No app class names required; any consumer using variant="control" gets this styling.
-.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item:has(.pf-v6-c-button.pf-m-control) {
+// Excluded: .pf-v6-c-file-upload (keeps default PF control button style).
+.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item:not(.pf-v6-c-file-upload .pf-v6-c-input-group__item):has(.pf-v6-c-button.pf-m-control) {
   display: flex;
   align-items: center;
 }
 
-.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item:has(.pf-v6-c-button.pf-m-control):last-child {
+.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item:not(.pf-v6-c-file-upload .pf-v6-c-input-group__item):has(.pf-v6-c-button.pf-m-control):last-child {
   padding-inline-end: var(--mui-input-group-control-button--container-padding-inline-end);
 }
 
-.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button.pf-m-control {
+.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item:not(.pf-v6-c-file-upload .pf-v6-c-input-group__item) .pf-v6-c-button.pf-m-control {
   --pf-v6-c-button--BorderColor: transparent;
   --pf-v6-c-button--hover--BorderColor: transparent;
   --pf-v6-c-button--m-control--BorderColor: transparent;
@@ -777,19 +777,19 @@
   align-self: center;
 }
 
-.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button.pf-m-control .pf-v6-c-button__icon,
-.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button.pf-m-control svg {
+.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item:not(.pf-v6-c-file-upload .pf-v6-c-input-group__item) .pf-v6-c-button.pf-m-control .pf-v6-c-button__icon,
+.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item:not(.pf-v6-c-file-upload .pf-v6-c-input-group__item) .pf-v6-c-button.pf-m-control svg {
   display: block;
   margin: 0;
 }
 
-.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button.pf-m-control:hover {
+.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item:not(.pf-v6-c-file-upload .pf-v6-c-input-group__item) .pf-v6-c-button.pf-m-control:hover {
   border-radius: 50%;
   outline: none;
   background-color: var(--pf-t--global--background--color--action--plain--hover, rgba(0, 0, 0, 0.04));
 }
 
-.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item .pf-v6-c-button.pf-m-control:focus-visible {
+.mui-theme .pf-v6-c-input-group .pf-v6-c-input-group__item:not(.pf-v6-c-file-upload .pf-v6-c-input-group__item) .pf-v6-c-button.pf-m-control:focus-visible {
   border-radius: 50%;
   outline: none;
   box-shadow: 0 0 0 2px var(--mui-palette-primary-main);
