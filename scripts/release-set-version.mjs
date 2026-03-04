@@ -66,8 +66,24 @@ for (const relPath of packagePaths) {
   validated.push({ absPath, relPath, pkg });
 }
 
+const workspaceNames = new Set(
+  validated.filter(({ relPath }) => relPath !== "package.json").map(({ pkg }) => pkg.name),
+);
+
+const depFields = ["dependencies", "devDependencies", "peerDependencies", "optionalDependencies"];
+
 for (const { absPath, relPath, pkg } of validated) {
   pkg.version = version;
+
+  for (const field of depFields) {
+    for (const name of Object.keys(pkg[field] ?? {})) {
+      if (workspaceNames.has(name)) {
+        pkg[field][name] = field === "peerDependencies" ? `>=${version}` : version;
+        console.log("  %s[%s][%s] -> %s", relPath, field, name, pkg[field][name]);
+      }
+    }
+  }
+
   fs.writeFileSync(absPath, JSON.stringify(pkg, null, 2) + "\n");
   console.log("%s -> %s", relPath, version);
 }
